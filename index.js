@@ -9,7 +9,26 @@ let order = [];
 let summary_total_harga = 0;
 
 module.exports = async function App() {
-  return router([line.follow(HandleFollow), line.unfollow(HandleUnfollow), line.message(HandleMessage), line.postback(HandlePostBack)]);
+  return router([
+    line.message(HandleMessage),
+    line.follow(HandleFollow),
+    line.unfollow(HandleUnfollow),
+    line.join(HandleJoin),
+    line.leave(HandleLeave),
+    line.memberJoined(HandleMemberJoined),
+    line.memberLeft(HandleMemberLeft),
+    line.postback(HandlePostback),
+    line.beacon.enter(HandleBeaconEnter),
+    line.beacon.banner(HandleBeaconBanner),
+    line.beacon.stay(HandleBeaconStay),
+    line.beacon(HandleBeacon),
+    line.accountLink(HandleAccountLink),
+    line.things.link(HandleThingsLink),
+    line.things.unlink(HandleThingsUnlink),
+    line.things.scenarioResult(HandleThingsScenarioResult),
+    line.things(HandleThings),
+    line(HandleLine),
+  ]);
 };
 
 // Untuk handle follow event (saat bot di-add friend oleh suatu akun LINE)
